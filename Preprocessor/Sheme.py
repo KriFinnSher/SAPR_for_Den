@@ -49,7 +49,7 @@ def draw_scheme(lengths, heights, rods, points, point_loads, dist_loads, left_su
                      width=min_length / 1000)
         for i in range(10):
             initial_y_coordinate = support_line + i * mean_height / 9
-            plt.arrow(0, initial_y_coordinate, -mean_len_15, -mean_height / 15, color='green', head_width=0, head_length=0,
+            plt.arrow(0, initial_y_coordinate, -mean_len_15, 0, color='green', head_width=0, head_length=0,
                       width=min_height / 1000)
 
     if right_support[0]:
@@ -59,7 +59,7 @@ def draw_scheme(lengths, heights, rods, points, point_loads, dist_loads, left_su
                      width=min_length / 1000)
         for i in range(10):
             initial_y_coordinate = support_line + i * mean_height / 9
-            plt.arrow(sum_of_lens, initial_y_coordinate, mean_len_15, mean_height / 15, color='green', head_width=0, head_length=0,
+            plt.arrow(sum_of_lens, initial_y_coordinate, mean_len_15, 0, color='green', head_width=0, head_length=0,
                       width=min_height / 1000)
 
     temp_lengths = [0] + lengths

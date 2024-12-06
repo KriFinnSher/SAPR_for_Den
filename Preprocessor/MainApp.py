@@ -324,9 +324,9 @@ class App(tk.Tk):
             hs = [float(rod["a"]) for rod in rods]
             hs = Sheme.change_scale(hs, 10)
 
-            temp = Sheme.change_scale(hs + ls, 10)
-
-            hs, ls = temp[:len(hs)], temp[len(hs):]
+            # temp = Sheme.change_scale(hs + ls, 10)
+            #
+            # hs, ls = temp[:len(hs)], temp[len(hs):]
 
             conc_loads = self.user_data["point_loads"]
             dist_loads = self.user_data["dist_loads"]

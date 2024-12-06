@@ -38,7 +38,7 @@ def draw_scheme(lengths, heights, rods, points, point_loads, dist_loads, left_su
 
     for length, height_of_rod in zip(lengths, heights):
         y_coordinate = max_height / 2 - height_of_rod / 2 + max_height * 2.5
-        scheme.add_patch(plt.Rectangle((x_coordinate, y_coordinate), length, height_of_rod, edgecolor='#575757', facecolor='white'))
+        scheme.add_patch(plt.Rectangle((x_coordinate, y_coordinate), length, height_of_rod, edgecolor='b', facecolor='white'))
         heights_lens_y.append((height_of_rod, length, y_coordinate))
         x_coordinate += length
 
@@ -47,8 +47,8 @@ def draw_scheme(lengths, heights, rods, points, point_loads, dist_loads, left_su
         support_line = last_rod_y_coordinate + max_height / 2 - mean_height / 2
         scheme.arrow(0, support_line, 0, mean_height, head_width=0, head_length=0, fc='green', ec='green',
                      width=min_length / 1000)
-        for i in range(10):
-            initial_y_coordinate = support_line + i * mean_height / 9
+        for i in range(15):
+            initial_y_coordinate = support_line + i * mean_height / 14
             plt.arrow(0, initial_y_coordinate, -mean_len_15, 0, color='green', head_width=0, head_length=0,
                       width=min_height / 1000)
 
@@ -57,8 +57,8 @@ def draw_scheme(lengths, heights, rods, points, point_loads, dist_loads, left_su
         support_line = last_rod_y_coordinate + max_height / 2 - mean_height / 2
         scheme.arrow(sum_of_lens, support_line, 0, mean_height, head_width=0, head_length=0, fc='green', ec='green',
                      width=min_length / 1000)
-        for i in range(10):
-            initial_y_coordinate = support_line + i * mean_height / 9
+        for i in range(15):
+            initial_y_coordinate = support_line + i * mean_height / 14
             plt.arrow(sum_of_lens, initial_y_coordinate, mean_len_15, 0, color='green', head_width=0, head_length=0,
                       width=min_height / 1000)
 
@@ -83,7 +83,7 @@ def draw_scheme(lengths, heights, rods, points, point_loads, dist_loads, left_su
             for k in range(7):
                 plt.arrow(x_temp, y_base_coordinate + height_of_rod / 2, abs(arrow_len * destination - sum_of_lens / 100), 0,
                           color='#ad322a', head_width=sum_of_heights / 40,
-                          head_length=sum_of_lens / 90, width=min_height / 10000)
+                          head_length=sum_of_lens / 90, width=min_height / 10000, ec='black')
                 x_temp += arrow_len
         elif destination == 0:
             continue
@@ -99,7 +99,7 @@ def draw_scheme(lengths, heights, rods, points, point_loads, dist_loads, left_su
                 a = -a if a > 0 else a
                 plt.arrow(x_temp, y_base_coordinate + height_of_rod / 2, a, 0,
                           color='#ad322a', head_width=sum_of_heights / 40,
-                          head_length=sum_of_lens / 90, width=min_height / 10000)
+                          head_length=sum_of_lens / 90, width=min_height / 10000, ec='black')
                 x_temp -= arrow_len
 
     for conc_load in point_loads:
@@ -124,7 +124,7 @@ def draw_scheme(lengths, heights, rods, points, point_loads, dist_loads, left_su
 
         plt.arrow(x_point, y_base_coordinate + height_of_rod / 2, length / 3, 0,
                   color='#db851d', head_width=sum_of_heights / 20,
-                  head_length=sum_of_lens / 40, width=min_height / 10000)
+                  head_length=sum_of_lens / 40, width=min_height / 10000, ec='grey')
 
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", UserWarning)

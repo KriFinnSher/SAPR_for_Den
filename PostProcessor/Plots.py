@@ -30,6 +30,8 @@ def show_epuras_with_tabs(parent, input_data, need=True):
                 ax.plot(x + temp_len, y, color='grey')
                 ax.fill_between(x + temp_len, [0] * len(x), y, color='grey', alpha=0.5, hatch='||')
 
+
+
                 ax.annotate(f'{round(abs(y[0]), 4)}', (temp_len, y[0]), textcoords="offset points", xytext=(-8, 2),
                              color='black')
                 ax.annotate(f'{round(abs(y[-1]), 4)}', (temp_len + rod_len, y[-1]), textcoords="offset points",
@@ -46,6 +48,24 @@ def show_epuras_with_tabs(parent, input_data, need=True):
             ax.plot(line_1, x_line, color='grey')
             ax.plot(line_1, line_2, color='grey')
             ax.fill_between(line_1, x_line, line_2, color='grey', hatch='||', alpha=0.5)
+
+            x_start = 0
+            k = 0
+            for rod in input_data['rods']:
+                if type_ == "σ(x)":
+                    y = float(rod['sigma'])
+                    x_end = x_start + float(input_data['points'][int(rod['point1'])])
+
+
+                    if abs(y) < abs(line_2[int(rod['point1']) - 1 + k]) or abs(y) < abs(line_2[int(rod['point1']) + k]):
+                        t = min(line_2[int(rod['point1']) - 1 + k], line_2[int(rod['point1']) + k])
+                        if t < 0 and abs(y) < abs(t):
+                            y = y * -1
+                        ax.hlines(y=y, xmin=x_start, xmax=x_end, color='r', linestyle='-', linewidth=1)
+
+                    x_start += float(input_data['points'][int(rod['point1'])])
+
+                    k += 1
 
             for x, y in zip(line_1, line_2):
                 ax.annotate(f'{abs(y)}', (x, y), textcoords="offset points", xytext=(-7, 0), color='black')
